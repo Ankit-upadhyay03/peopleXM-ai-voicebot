@@ -1,0 +1,22 @@
+# Environment variables (secrets)
+.env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+
+# Vector store data
+vectorstore/
+
+# Uploads
+uploads/
+
+# IDE
+.vscode/
+.idea/
+
+# Node
+node_modules/
+frontend/node_modules/

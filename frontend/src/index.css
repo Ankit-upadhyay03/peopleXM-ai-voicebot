@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply font-sans antialiased bg-slate-50 text-gray-900;
+  }
+  .dark body {
+    @apply bg-slate-900 text-gray-100;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 text-white font-medium py-2.5 px-5 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2.5 px-5 rounded-xl transition-all duration-200;
+  }
+
+  .btn-ghost {
+    @apply hover:bg-gray-100 text-gray-600 p-2 rounded-xl transition-all duration-200;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl border border-gray-100 shadow-sm;
+  }
+
+  .card-hover {
+    @apply bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-indigo-200 transition-all duration-200 cursor-pointer;
+  }
+
+  .chat-bubble-user {
+    @apply bg-indigo-500 text-white rounded-2xl rounded-br-md px-4 py-3 shadow-sm;
+  }
+
+  .chat-bubble-bot {
+    @apply bg-white border border-gray-100 rounded-2xl rounded-bl-md px-4 py-3 shadow-sm;
+  }
+
+  .input-field {
+    @apply w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all duration-200;
+  }
+
+  .stat-card {
+    @apply bg-white rounded-2xl border border-gray-100 shadow-sm p-5 flex flex-col gap-1;
+  }
+
+  .sidebar-item {
+    @apply w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200;
+  }
+
+  .sidebar-item-active {
+    @apply bg-indigo-50 text-indigo-600;
+  }
+
+  .sidebar-item-inactive {
+    @apply text-gray-600 hover:bg-gray-100;
+  }
+}
+
+/* Dark mode overrides (can't use @apply with dark: prefix inside @layer) */
+.dark .btn-secondary {
+  @apply bg-slate-700 hover:bg-slate-600 text-gray-200;
+}
+
+.dark .btn-ghost {
+  @apply hover:bg-slate-700 text-gray-300;
+}
+
+.dark .card,
+.dark .stat-card {
+  @apply bg-slate-800 border-slate-700;
+}
+
+.dark .card-hover {
+  @apply bg-slate-800 border-slate-700;
+}
+
+.dark .card-hover:hover {
+  @apply border-indigo-700;
+}
+
+.dark .chat-bubble-bot {
+  @apply bg-slate-800 border-slate-700;
+}
+
+.dark .input-field {
+  @apply bg-slate-800 border-slate-700 text-gray-100;
+}
+
+.dark .input-field:focus {
+  @apply border-indigo-500 ring-indigo-900/50;
+}
+
+.dark .sidebar-item-active {
+  background-color: rgba(99, 102, 241, 0.1);
+  @apply text-indigo-400;
+}
+
+.dark .sidebar-item-inactive {
+  @apply text-gray-400 hover:bg-slate-700;
+}
+
+/* Glass effect */
+.glass {
+  @apply bg-white/80 backdrop-blur-xl border-b border-gray-200;
+}
+
+.dark .glass {
+  @apply bg-slate-800/80 border-slate-700;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-slate-600;
+}
