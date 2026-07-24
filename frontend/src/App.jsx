@@ -41,12 +41,22 @@ function App() {
   }
 
   return (
-    <div className="flex h-screen overflow-hidden bg-slate-50 dark:bg-[#0f172a]">
+    <div className="flex h-screen overflow-hidden relative" style={{ background: '#080d1a' }}>
+      {/* Ambient Background Glows */}
+      <div className="ambient-glow top-[-200px] left-[-100px]" style={{ background: '#6366f1' }} />
+      <div className="ambient-glow top-[40%] right-[-200px]" style={{ background: '#a855f7' }} />
+      <div className="ambient-glow bottom-[-200px] left-[30%]" style={{ background: '#06b6d4' }} />
+
       <Toaster
         position="top-right"
         toastOptions={{
-          className: 'card text-sm',
-          style: { background: undefined, color: undefined },
+          className: 'glass-card text-sm text-gray-200',
+          style: {
+            background: 'rgba(30, 41, 59, 0.9)',
+            backdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            color: '#e2e8f0',
+          },
         }}
       />
 
@@ -59,7 +69,7 @@ function App() {
       />
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden relative z-10">
         <Header
           toggleSidebar={() => setSidebarOpen(!sidebarOpen)}
           activeTab={activeTab}

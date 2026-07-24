@@ -36,6 +36,7 @@ from ..services.llm import LLMService
 from ..services.memory import ConversationMemory
 from ..services.conversation_logger import ConversationLogger
 from ..services.language_detect import detect_language
+from ..services.analytics_events import notify_analytics_update
 
 router = APIRouter(prefix="/api", tags=["ask"])
 
@@ -165,6 +166,8 @@ async def ask(request: AskRequest):
                 source=top_chunk["source"],
                 page=top_chunk["page"],
             )
+            # Notify SSE listeners that new data is available
+            notify_analytics_update()
         except Exception:
             # Logging failure should not break the response
             pass

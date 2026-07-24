@@ -85,4 +85,40 @@ export const healthCheck = async () => {
   return response.data
 }
 
+/**
+ * GET /api/analytics — One-shot analytics fetch
+ */
+export const getAnalytics = async () => {
+  const response = await api.get('/analytics/')
+  return response.data
+}
+
+/**
+ * Create an EventSource for real-time analytics streaming (SSE).
+ * Returns the EventSource instance — caller must close it on unmount.
+ *
+ * @param {function} onUpdate - Callback receiving the analytics data object
+ * @returns {EventSource}
+ */
+export const createAnalyticsStream = (onUpdate) => {
+  const url = `${window.location.origin}${API_BASE}/analytics/stream`
+  const eventSource = new EventSource(url)
+
+  eventSource.addEventListener('analytics_update', (event) => {
+    try {
+      const data = JSON.parse(event.data)
+      onUpdate(data)
+    } catch (e) {
+      console.error('Failed to parse analytics event:', e)
+    }
+  })
+
+  eventSource.onerror = () => {
+    // EventSource auto-reconnects on error
+    console.warn('Analytics SSE connection error, will auto-reconnect')
+  }
+
+  return eventSource
+}
+
 export default api

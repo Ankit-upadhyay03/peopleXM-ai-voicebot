@@ -3,7 +3,7 @@ from pathlib import Path
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .api import upload, health, ask, logs, voice
+from .api import upload, health, ask, logs, voice, analytics
 from .config import settings
 
 
@@ -27,6 +27,7 @@ app.include_router(upload.router)
 app.include_router(ask.router)
 app.include_router(logs.router)
 app.include_router(voice.router)
+app.include_router(analytics.router)
 
 
 @app.get("/")

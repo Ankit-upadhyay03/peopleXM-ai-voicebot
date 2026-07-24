@@ -41,13 +41,15 @@ class MongoDBClient:
 
     @property
     def is_connected(self) -> bool:
-        """Check if MongoDB is reachable."""
-        if self._connected is None:
-            try:
-                self.client.admin.command("ping")
-                self._connected = True
-            except Exception:
-                self._connected = False
+        """Check if MongoDB is reachable. Re-checks each time if previously failed."""
+        if self._connected is True:
+            return True
+        # Retry connection check if previously failed or untested
+        try:
+            self.client.admin.command("ping")
+            self._connected = True
+        except Exception:
+            self._connected = False
         return self._connected
 
     def close(self):

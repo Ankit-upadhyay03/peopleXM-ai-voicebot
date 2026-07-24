@@ -18,12 +18,15 @@ This is useful for:
 - Audit trail
 """
 
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from typing import Dict, Any, Optional
 
 from ..database.mongodb import mongo_client
 
 COLLECTION_NAME = "conversation_logs"
+
+# IST timezone (UTC+5:30)
+IST = timezone(timedelta(hours=5, minutes=30))
 
 
 class ConversationLogger:
@@ -72,7 +75,7 @@ class ConversationLogger:
             "confidence": confidence,
             "source": source,
             "page": page,
-            "timestamp": datetime.now(timezone.utc),
+            "timestamp": datetime.now(IST),
         }
 
         result = self.collection.insert_one(document)

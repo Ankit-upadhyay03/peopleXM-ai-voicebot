@@ -20,6 +20,7 @@ from ..services.llm import LLMService
 from ..services.memory import ConversationMemory
 from ..services.conversation_logger import ConversationLogger
 from ..services.language_detect import detect_language
+from ..services.analytics_events import notify_analytics_update
 from ..config import settings
 
 router = APIRouter(prefix="/api/voice", tags=["voice"])
@@ -210,6 +211,7 @@ async def voice_ask(
                 source=source_doc,
                 page=source_page,
             )
+            notify_analytics_update()
         except Exception:
             pass
 

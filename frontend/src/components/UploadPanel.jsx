@@ -52,11 +52,11 @@ function UploadPanel() {
     <div className="flex flex-col items-center justify-center h-full px-4 animate-fade-in">
       <div className="w-full max-w-lg">
         <div className="text-center mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-700 flex items-center justify-center mx-auto mb-4 shadow-glow">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-700 flex items-center justify-center mx-auto mb-4" style={{ boxShadow: '0 0 20px rgba(99,102,241,0.15)' }}>
             <FiUpload className="text-white" size={24} />
           </div>
-          <h2 className="text-xl font-bold text-gray-800 dark:text-white">Upload FAQ Document</h2>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+          <h2 className="text-xl font-bold text-white">Upload FAQ Document</h2>
+          <p className="text-sm text-gray-400 mt-1">
             Index your documents for AI-powered search
           </p>
         </div>
